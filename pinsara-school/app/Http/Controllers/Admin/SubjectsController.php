@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Subject;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -18,7 +19,7 @@ class SubjectsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $subjects = Subject::where('name', 'LIKE', "%$keyword%")
@@ -41,7 +42,8 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        return view('admin.subjects.create');
+        $grades = Grade::pluck('grade', 'id');
+        return view('admin.subjects.create', compact('grades'));
     }
 
     /**
@@ -77,6 +79,7 @@ class SubjectsController extends Controller
     {
         $subject = Subject::findOrFail($id);
 
+        
         return view('admin.subjects.show', compact('subject'));
     }
 
@@ -91,7 +94,8 @@ class SubjectsController extends Controller
     {
         $subject = Subject::findOrFail($id);
 
-        return view('admin.subjects.edit', compact('subject'));
+        $grades = Grade::pluck('grade', 'id');
+        return view('admin.subjects.edit', compact('subject', 'grades'));
     }
 
     /**
@@ -106,6 +110,10 @@ class SubjectsController extends Controller
     {
         
         $requestData = $request->all();
+
+        $fileName = time().$request->file("image")->getClientOriginalName();
+        $path = $request->file("image")->storeAs('images', $fileName, 'public'); 
+        $requestData["image"] = '/storage/'.$path;
         
         $subject = Subject::findOrFail($id);
         $subject->update($requestData);

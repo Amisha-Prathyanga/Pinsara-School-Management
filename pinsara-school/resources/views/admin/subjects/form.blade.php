@@ -19,8 +19,11 @@
     {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('grade_id') ? 'has-error' : ''}}">
-    <label for="grade_id" class="control-label">{{ 'Grade Id' }}</label>
-    <input class="form-control" name="grade_id" type="number" id="grade_id" value="{{ isset($subject->grade_id) ? $subject->grade_id : ''}}" >
+    <label for="grade_id" class="control-label">{{ 'Grade' }}</label>
+    <!-- <input class="form-control" name="grade_id" type="number" id="grade_id" value="{{ isset($subject->grade_id) ? $subject->grade_id : ''}}" > -->
+
+    <?php echo Form::select('grade_id', $grades, isset($subject->grade_id) ? $subject->grade_id : null,  array('class' => 'form-control')); ?>
+
     {!! $errors->first('grade_id', '<p class="help-block">:message</p>') !!}
 </div>
 

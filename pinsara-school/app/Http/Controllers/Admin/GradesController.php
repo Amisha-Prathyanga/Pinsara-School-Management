@@ -18,7 +18,7 @@ class GradesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $grades = Grade::where('grade', 'LIKE', "%$keyword%")

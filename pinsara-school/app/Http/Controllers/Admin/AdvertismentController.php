@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Student;
+use App\Models\Advertisment;
 use Illuminate\Http\Request;
 
-class StudentsController extends Controller
+class AdvertismentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +18,18 @@ class StudentsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 5;
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            $students = Student::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
-                ->orWhere('telephone', 'LIKE', "%$keyword%")
-                ->orWhere('birthday', 'LIKE', "%$keyword%")
-                ->orWhere('school', 'LIKE', "%$keyword%")
+            $advertisment = Advertisment::where('ad_ID', 'LIKE', "%$keyword%")
+                ->orWhere('image', 'LIKE', "%$keyword%")
+                ->orWhere('popImage', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $students = Student::latest()->paginate($perPage);
+            $advertisment = Advertisment::latest()->paginate($perPage);
         }
 
-        return view('admin.students.index', compact('students'));
+        return view('admin.advertisment.index', compact('advertisment'));
     }
 
     /**
@@ -42,7 +39,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        return view('admin.advertisment.create');
     }
 
     /**
@@ -57,9 +54,9 @@ class StudentsController extends Controller
         
         $requestData = $request->all();
         
-        Student::create($requestData);
+        Advertisment::create($requestData);
 
-        return redirect('admin/students')->with('flash_message', 'Student added!');
+        return redirect('admin/advertisment')->with('flash_message', 'Advertisment added!');
     }
 
     /**
@@ -71,9 +68,9 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        $student = Student::findOrFail($id);
+        $advertisment = Advertisment::findOrFail($id);
 
-        return view('admin.students.show', compact('student'));
+        return view('admin.advertisment.show', compact('advertisment'));
     }
 
     /**
@@ -85,9 +82,9 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $advertisment = Advertisment::findOrFail($id);
 
-        return view('admin.students.edit', compact('student'));
+        return view('admin.advertisment.edit', compact('advertisment'));
     }
 
     /**
@@ -103,10 +100,10 @@ class StudentsController extends Controller
         
         $requestData = $request->all();
         
-        $student = Student::findOrFail($id);
-        $student->update($requestData);
+        $advertisment = Advertisment::findOrFail($id);
+        $advertisment->update($requestData);
 
-        return redirect('admin/students')->with('flash_message', 'Student updated!');
+        return redirect('admin/advertisment')->with('flash_message', 'Advertisment updated!');
     }
 
     /**
@@ -118,8 +115,8 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        Student::destroy($id);
+        Advertisment::destroy($id);
 
-        return redirect('admin/students')->with('flash_message', 'Student deleted!');
+        return redirect('admin/advertisment')->with('flash_message', 'Advertisment deleted!');
     }
 }

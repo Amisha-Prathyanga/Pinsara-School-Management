@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\GradesController;
 use App\Http\Controllers\Admin\SubjectsController;
+use App\Http\Controllers\Admin\AdvertismentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,4 @@ Route::middleware([
 Route::resource('admin/students', StudentsController::class);
 Route::resource('admin/grades', GradesController::class);
 Route::resource('admin/subjects', SubjectsController::class);
+Route::resource('admin/advertisments', AdvertismentController::class);
