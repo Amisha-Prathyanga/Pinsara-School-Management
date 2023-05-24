@@ -3,6 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\GradesController;
+use App\Http\Controllers\Admin\SubjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +36,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::resource('admin/students', StudentsController::class);
+Route::resource('admin/grades', GradesController::class);
+Route::resource('admin/subjects', SubjectsController::class);
