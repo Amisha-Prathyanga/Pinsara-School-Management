@@ -55,13 +55,22 @@ class AdvertismentController extends Controller
         
         $requestData = $request->all();
 
-        $fileName = time().$request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
-        $requestData["image"] = '/storage/'.$path;
+        // $fileName = time().$request->file('image')->getClientOriginalName();
+        // $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
+        // $requestData["image"] = '/storage/'.$path;
 
-        $fileName = time().$request->file('popImage')->getClientOriginalName();
-        $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
-        $requestData["popImage"] = '/storage/'.$path;
+        // $fileName = time().$request->file('popImage')->getClientOriginalName();
+        // $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
+        // $requestData["popImage"] = '/storage/'.$path;
+
+        $fileName1 = time() . $request->file('image')->getClientOriginalName();
+        $path1 = $request->file('image')->storeAs('images', $fileName1, 'public');
+        $requestData["image"] = '/storage/' . $path1;
+
+        $fileName2 = time() . $request->file('popImage')->getClientOriginalName();
+        $path2 = $request->file('popImage')->storeAs('images', $fileName2, 'public');
+        $requestData["popImage"] = '/storage/' . $path2;
+
         
         Advertisment::create($requestData);
 
@@ -111,14 +120,23 @@ class AdvertismentController extends Controller
         $requestData = $request->all();
 
         
-        $fileName = time().$request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
-        $requestData["image"] = '/storage/'.$path;
+        // $fileName = time().$request->file('image')->getClientOriginalName();
+        // $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
+        // $requestData["image"] = '/storage/'.$path;
 
         
-        $fileName = time().$request->file('popImage')->getClientOriginalName();
-        $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
-        $requestData["popImage"] = '/storage/'.$path;
+        // $fileName = time().$request->file('popImage')->getClientOriginalName();
+        // $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
+        // $requestData["popImage"] = '/storage/'.$path;
+
+        $fileName1 = time() . $request->file('image')->getClientOriginalName();
+        $path1 = $request->file('image')->storeAs('images', $fileName1, 'public');
+        $requestData["image"] = '/storage/' . $path1;
+
+        $fileName2 = time() . $request->file('popImage')->getClientOriginalName();
+        $path2 = $request->file('popImage')->storeAs('images', $fileName2, 'public');
+        $requestData["popImage"] = '/storage/' . $path2;
+
         
         $advertisment = Advertisment::findOrFail($id);
         $advertisment->update($requestData);
