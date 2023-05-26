@@ -9,7 +9,7 @@
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('videoLink') ? 'has-error' : ''}}">
-    <label for="videoLink" class="control-label">{{ 'Videolink' }}</label>
+    <label for="videoLink" class="control-label">{{ 'Video Link (eg: https://www.youtube.com/embed/ZbqCDUOygXg)' }}</label>
     <input class="form-control" name="videoLink" type="text" id="videoLink" value="{{ isset($subject->videoLink) ? $subject->videoLink : ''}}" >
     {!! $errors->first('videoLink', '<p class="help-block">:message</p>') !!}
 </div>

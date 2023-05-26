@@ -118,7 +118,7 @@
                                     <li class="list-inline-item">
                                             <a href="{{ url('/admin/notifications/' . $item->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View" class="px-2 text-primary"><i class="bx bx-carousel font-size-25"></i></a>
                                         </li>
-                                        <li class="list-inline-item">
+                                        <!-- <li class="list-inline-item">
                                             <a href="{{ url('/admin/notifications/' . $item->id . '/edit') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-warning"><i class="bx bx-pencil font-size-25"></i></a>
                                         </li>
                                         <li class="list-inline-item">
@@ -126,7 +126,7 @@
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" id="delete-button" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-25"></i></button>
-                                        </form>
+                                        </form> -->
                                         </li>
                                        
                                     </ul>
