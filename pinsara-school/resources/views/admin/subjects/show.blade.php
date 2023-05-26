@@ -6,8 +6,8 @@
             @include('admin.sidebar')
 
             <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Subject {{ $subject->id }}</div>
+                <div class="card" style="margin-top: 20px">
+                    <div class="card-header" style="background-color: rgb(248 250 252)">Subject {{ $subject->id }}</div>
                     <div class="card-body">
 
                         <a href="{{ url('/admin/subjects') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
@@ -21,7 +21,7 @@
                         <br/>
                         <br/>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive" >
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -33,13 +33,13 @@
                                     <td> 
                                     @if ($subject->videoLink)
                                                 <div class="embed-responsive embed-responsive-16by9">
-                                                    <iframe class="embed-responsive-item" src="{{ $subject->videoLink }}" allowfullscreen></iframe>
+                                                    <iframe class="embed-responsive-item" src="{{ $subject->videoLink }}" width="200" allowfullscreen></iframe>
                                                 </div>
                                             @else
                                                 No video available.
                                             @endif
                                     </td></tr>
-                                    <tr><th> Image </th><td><img src="{{ asset($subject->image) }}" class="img img-responsive"/></td></tr>
+                                    <tr><th> Image </th><td><img src="{{ asset($subject->image) }}" width="640" class="img img-responsive"/></td></tr>
                                 </tbody>
                             </table>
                         </div>

@@ -7,7 +7,8 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\GradesController;
 use App\Http\Controllers\Admin\SubjectsController;
 use App\Http\Controllers\Admin\AdvertismentController;
-
+use App\Http\Controllers\Admin\NotificationsController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,12 +34,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::resource('admin/students', StudentsController::class);
 Route::resource('admin/grades', GradesController::class);
 Route::resource('admin/subjects', SubjectsController::class);
-Route::resource('admin/advertisments', AdvertismentController::class);
+Route::resource('admin/advertisment', AdvertismentController::class);
+Route::resource('admin/notifications', NotificationsController::class);

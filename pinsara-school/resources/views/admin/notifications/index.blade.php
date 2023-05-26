@@ -7,13 +7,13 @@
 
             <div class="col-md-9">
                 <!-- <div class="card">
-                    <div class="card-header">Subjects</div>
+                    <div class="card-header">Notifications</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/subjects/create') }}" class="btn btn-success btn-sm" title="Add New Subject">
+                        <a href="{{ url('/admin/notifications/create') }}" class="btn btn-success btn-sm" title="Add New Notification">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/subjects') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <form method="GET" action="{{ url('/admin/notifications') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -30,46 +30,45 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Description</th><th>VideoLink</th><th>Actions</th>
+                                        <th>#</th><th>Title</th><th>Body</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($subjects as $item)
+                                @foreach($notifications as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->description }}</td><td>{{ $item->videoLink }}</td>
+                                        <td>{{ $item->title }}</td><td>{{ $item->body }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/subjects/' . $item->id) }}" title="View Subject"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/subjects/' . $item->id . '/edit') }}" title="Edit Subject"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/notifications/' . $item->id) }}" title="View Notification"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/admin/notifications/' . $item->id . '/edit') }}" title="Edit Notification"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/admin/subjects' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/admin/notifications' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Subject" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Notification" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $subjects->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $notifications->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>
                 </div> -->
 
-
                 <div class="container" style="margin-top: 20px">
     <div class="row align-items-center">
         <div class="col-md-6">
             <div class="mb-3">
-                <h5 class="card-title">Subject List <span class="text-muted fw-normal ms-2">({{$sbjc}})</span></h5>
+                <h5 class="card-title">Notification List <span class="text-muted fw-normal ms-2">({{$nc}})</span></h5>
             </div>
         </div>
         <div class="col-md-6">
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                 
-                <form method="GET" action="{{ url('/admin/subjects') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                <form method="GET" action="{{ url('/admin/notifications') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group" style="margin-right: 20px">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -80,7 +79,7 @@
                             </div>
                         </form>
                 <div>
-                    <a href="{{ url('/admin/subjects/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
+                    <a href="{{ url('/admin/notifications/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
                 </div>
                
             </div>
@@ -95,9 +94,8 @@
                             <tr>
                               
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Grade</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Body</th>
                                 <!-- <th scope="col">Position</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Projects</th> -->
@@ -105,12 +103,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($subjects as $item)
+                        @foreach($notifications as $item)
                             <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td>{{ $item->grade_id }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->body }}</td>
                               
                                 <!-- <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">Simon Ryles</a></td> -->
                                 <!-- <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
@@ -119,13 +116,13 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
-                                            <a href="{{ url('/admin/subjects/' . $item->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View" class="px-2 text-primary"><i class="bx bx-carousel font-size-25"></i></a>
+                                            <a href="{{ url('/admin/notifications/' . $item->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View" class="px-2 text-primary"><i class="bx bx-carousel font-size-25"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="{{ url('/admin/subjects/' . $item->id . '/edit') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-warning"><i class="bx bx-pencil font-size-25"></i></a>
+                                            <a href="{{ url('/admin/notifications/' . $item->id . '/edit') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-warning"><i class="bx bx-pencil font-size-25"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                        <form method="POST" action="{{ url('/admin/subjects' . '/' . $item->id) }}" accept-charset="UTF-8">
+                                        <form method="POST" action="{{ url('/admin/notifications' . '/' . $item->id) }}" accept-charset="UTF-8">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" id="delete-button" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-25"></i></button>
@@ -147,7 +144,7 @@
 
         <div class="col-sm-6">
           
-        <div class="pagination-wrapper"> {!! $subjects->appends(['search' => Request::get('search')])->render() !!} </div>
+        <div class="pagination-wrapper"> {!! $notifications->appends(['search' => Request::get('search')])->render() !!} </div>
         </div>
     </div>
 </div>

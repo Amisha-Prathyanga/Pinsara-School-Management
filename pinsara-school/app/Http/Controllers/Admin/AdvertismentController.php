@@ -17,6 +17,7 @@ class AdvertismentController extends Controller
      */
     public function index(Request $request)
     {
+        $ac = Advertisment::count();
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -29,7 +30,7 @@ class AdvertismentController extends Controller
             $advertisment = Advertisment::latest()->paginate($perPage);
         }
 
-        return view('admin.advertisment.index', compact('advertisment'));
+        return view('admin.advertisment.index', compact('advertisment', 'ac'));
     }
 
     /**
@@ -53,6 +54,14 @@ class AdvertismentController extends Controller
     {
         
         $requestData = $request->all();
+
+        $fileName = time().$request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
+        $requestData["image"] = '/storage/'.$path;
+
+        $fileName = time().$request->file('popImage')->getClientOriginalName();
+        $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
+        $requestData["popImage"] = '/storage/'.$path;
         
         Advertisment::create($requestData);
 
@@ -84,6 +93,7 @@ class AdvertismentController extends Controller
     {
         $advertisment = Advertisment::findOrFail($id);
 
+
         return view('admin.advertisment.edit', compact('advertisment'));
     }
 
@@ -99,6 +109,16 @@ class AdvertismentController extends Controller
     {
         
         $requestData = $request->all();
+
+        
+        $fileName = time().$request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public'); 
+        $requestData["image"] = '/storage/'.$path;
+
+        
+        $fileName = time().$request->file('popImage')->getClientOriginalName();
+        $path = $request->file('popImage')->storeAs('images', $fileName, 'public'); 
+        $requestData["popImage"] = '/storage/'.$path;
         
         $advertisment = Advertisment::findOrFail($id);
         $advertisment->update($requestData);

@@ -7,9 +7,9 @@
 
             <div class="col-md-9">
                 <div class="card" style="margin-top: 20px">
-                    <div class="card-header" style="background-color: rgb(248 250 252)">Create New Grade</div>
+                    <div class="card-header" style="background-color: rgb(248 250 252)">Edit Notification #{{ $notification->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/grades') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/notifications') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,10 +21,11 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/grades') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/notifications/' . $notification->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.grades.form', ['formMode' => 'create'])
+                            @include ('admin.notifications.form', ['formMode' => 'edit'])
 
                         </form>
 

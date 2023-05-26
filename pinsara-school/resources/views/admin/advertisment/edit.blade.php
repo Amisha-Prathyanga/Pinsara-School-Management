@@ -6,8 +6,8 @@
             @include('admin.sidebar')
 
             <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Edit Advertisment #{{ $advertisment->id }}</div>
+                <div class="card" style="margin-top: 20px">
+                    <div class="card-header" style="background-color: rgb(248 250 252)">Edit Advertisment #{{ $advertisment->id }}</div>
                     <div class="card-body">
                         <a href="{{ url('/admin/advertisment') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />

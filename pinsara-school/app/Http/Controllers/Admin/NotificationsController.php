@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Student;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
-class StudentsController extends Controller
+class NotificationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +17,19 @@ class StudentsController extends Controller
      */
     public function index(Request $request)
     {
-        $stdc = Student::count();
+        $nc = Notification::count();
         $keyword = $request->get('search');
-        $perPage = 5;
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            $students = Student::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
-                ->orWhere('telephone', 'LIKE', "%$keyword%")
-                ->orWhere('birthday', 'LIKE', "%$keyword%")
-                ->orWhere('school', 'LIKE', "%$keyword%")
+            $notifications = Notification::where('title', 'LIKE', "%$keyword%")
+                ->orWhere('body', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $students = Student::latest()->paginate($perPage);
+            $notifications = Notification::latest()->paginate($perPage);
         }
 
-        return view('admin.students.index', compact('students', 'stdc'));
+        return view('admin.notifications.index', compact('notifications', 'nc'));
     }
 
     /**
@@ -43,7 +39,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        return view('admin.notifications.create');
     }
 
     /**
@@ -58,9 +54,9 @@ class StudentsController extends Controller
         
         $requestData = $request->all();
         
-        Student::create($requestData);
+        Notification::create($requestData);
 
-        return redirect('admin/students')->with('flash_message', 'Student added!');
+        return redirect('admin/notifications')->with('flash_message', 'Notification added!');
     }
 
     /**
@@ -72,9 +68,9 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        $student = Student::findOrFail($id);
+        $notification = Notification::findOrFail($id);
 
-        return view('admin.students.show', compact('student'));
+        return view('admin.notifications.show', compact('notification'));
     }
 
     /**
@@ -86,9 +82,9 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $notification = Notification::findOrFail($id);
 
-        return view('admin.students.edit', compact('student'));
+        return view('admin.notifications.edit', compact('notification'));
     }
 
     /**
@@ -104,10 +100,10 @@ class StudentsController extends Controller
         
         $requestData = $request->all();
         
-        $student = Student::findOrFail($id);
-        $student->update($requestData);
+        $notification = Notification::findOrFail($id);
+        $notification->update($requestData);
 
-        return redirect('admin/students')->with('flash_message', 'Student updated!');
+        return redirect('admin/notifications')->with('flash_message', 'Notification updated!');
     }
 
     /**
@@ -119,8 +115,8 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        Student::destroy($id);
+        Notification::destroy($id);
 
-        return redirect('admin/students')->with('flash_message', 'Student deleted!');
+        return redirect('admin/notifications')->with('flash_message', 'Notification deleted!');
     }
 }

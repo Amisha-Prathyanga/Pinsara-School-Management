@@ -17,6 +17,7 @@ class GradesController extends Controller
      */
     public function index(Request $request)
     {
+        $gc = Grade::count();
         $keyword = $request->get('search');
         $perPage = 5;
 
@@ -27,7 +28,7 @@ class GradesController extends Controller
             $grades = Grade::latest()->paginate($perPage);
         }
 
-        return view('admin.grades.index', compact('grades'));
+        return view('admin.grades.index', compact('grades','gc'));
     }
 
     /**
