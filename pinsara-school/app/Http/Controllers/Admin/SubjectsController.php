@@ -18,6 +18,7 @@ class SubjectsController extends Controller
      */
     public function index(Request $request)
     {
+        $grades = Grade::all();
         $sbjc = Subject::count();
         $keyword = $request->get('search');
         $perPage = 5;
@@ -33,7 +34,7 @@ class SubjectsController extends Controller
             $subjects = Subject::latest()->paginate($perPage);
         }
 
-        return view('admin.subjects.index', compact('subjects', 'sbjc'));
+        return view('admin.subjects.index', compact('subjects', 'sbjc', 'grades'));
     }
 
     /**

@@ -47,9 +47,6 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Grade</th>
-                                <!-- <th scope="col">Position</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Projects</th> -->
                                 <th scope="col" style="width: 200px;">Action</th>
                             </tr>
                         </thead>
@@ -61,10 +58,6 @@
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->grade_id }}</td>
                               
-                                <!-- <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">Simon Ryles</a></td> -->
-                                <!-- <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
-                                <td>SimonRyles@minible.com</td>
-                                <td>125</td> -->
                                 <td>
                                     <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
@@ -104,3 +97,7 @@
         </div>
     </div>
 @endsection
+
+
+
+
