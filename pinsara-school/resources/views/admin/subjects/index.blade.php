@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+            <div class="d-flex  align-items-center justify-content-end mb-3">
                 
                 <form method="GET" action="{{ url('/admin/subjects') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search" >
                             <div class="input-group" style="margin-right: 20px">
@@ -28,9 +28,22 @@
                                 </span>
                             </div>
                         </form>
-                <div>
-                    <a href="{{ url('/admin/subjects/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
-                </div>
+
+                         <div class="dropdown ml-2" style="width: auto;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Grades
+            </button>
+            @foreach($subjects as $item)
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">{{$item->grade_id}}</a>
+                <!-- <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+            @endforeach
+        </div>
+                
+                    <a href="{{ url('/admin/subjects/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary ml-2" style="white-space: nowrap"><i class="bx bx-plus me-1"></i> Add New</a>
+                
                
             </div>
         </div>

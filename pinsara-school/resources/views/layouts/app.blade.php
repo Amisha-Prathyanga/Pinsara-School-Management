@@ -22,6 +22,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;700&display=swap" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         
 
 

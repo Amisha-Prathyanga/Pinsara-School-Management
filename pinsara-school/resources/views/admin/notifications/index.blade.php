@@ -65,8 +65,19 @@
                 <h5 class="card-title">Notification List <span class="text-muted fw-normal ms-2">({{$nc}})</span></h5>
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+
+            <div class="dropdown" style="display: inline-block">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
                 
                 <form method="GET" action="{{ url('/admin/notifications') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group" style="margin-right: 20px">
@@ -83,7 +94,37 @@
                 </div>
                
             </div>
-        </div>
+        </div> -->
+        <div class="col-md-6">
+    <div class="d-flex align-items-center justify-content-end mb-3">
+        <form method="GET" action="{{ url('/admin/notifications') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 mr-2" role="search">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+<!-- 
+        <div class="dropdown ml-2" style="width: auto;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Grades
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div> -->
+
+        <a href="{{ url('/admin/notifications/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary ml-2" style="white-space: nowrap"><i class="bx bx-plus me-1"></i> Add New</a>
+    </div>
+</div>
+
+
+
     </div>
     <div class="row">
         <div class="col-lg-12">
