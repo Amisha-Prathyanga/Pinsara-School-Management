@@ -18,7 +18,7 @@ class SubjectsController extends Controller
      */
     public function index(Request $request)
     {
-        $grades = Grade::all();
+        $gradess = Grade::all();
         $sbjc = Subject::count();
         $keyword = $request->get('search');
         $perPage = 5;
@@ -34,7 +34,7 @@ class SubjectsController extends Controller
             $subjects = Subject::latest()->paginate($perPage);
         }
 
-        return view('admin.subjects.index', compact('subjects', 'sbjc', 'grades'));
+        return view('admin.subjects.index', compact('subjects', 'sbjc', 'gradess'));
     }
 
     /**
@@ -80,7 +80,6 @@ class SubjectsController extends Controller
     public function show($id)
     {
         $subject = Subject::findOrFail($id);
-
         
         return view('admin.subjects.show', compact('subject'));
     }
@@ -136,4 +135,6 @@ class SubjectsController extends Controller
 
         return redirect('admin/subjects')->with('flash_message', 'Subject deleted!');
     }
+
+
 }

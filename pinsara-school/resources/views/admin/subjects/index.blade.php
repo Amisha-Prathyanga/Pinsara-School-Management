@@ -30,16 +30,15 @@
                         </form>
 
                          <div class="dropdown ml-2" style="width: auto;">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Grades
-            </button>
-            @foreach($subjects as $item)
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">{{$item->grade_id}}</a>
-                <!-- <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a> -->
-            </div>
-            @endforeach
+            </button> -->
+            <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach($gradess as $item)
+                <a class="dropdown-item" href="#">{{$item->grade}}</a>
+                @endforeach
+               
+            </div> -->
         </div>
                 
                     <a href="{{ url('/admin/subjects/create') }}" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary ml-2" style="white-space: nowrap"><i class="bx bx-plus me-1"></i> Add New</a>
